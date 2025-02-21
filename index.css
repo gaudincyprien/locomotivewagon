@@ -1,0 +1,141 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+}
+
+h1 {
+  color: #333;
+}
+
+input {
+  height: 40px;
+  width: 200px;
+}
+
+#container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+#locomotiveSection, #wagonSection {
+  margin: 0 20px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#displayFlex {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+button {
+  background-color: #008CBA;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-right: 50px; 
+}
+
+#displayFlex button:last-child {
+  margin-right: 0; /* Supprime l'espace après le dernier bouton */
+}
+
+button:hover {
+  background-color: #005f73;
+}
+
+button svg {
+  width: 20px;
+  height: 20px;
+}
+
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#transactionsHistory {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap; /* Permet aux éléments de se répartir sur plusieurs lignes */
+  justify-content: space-around; /* Espace entre les cartes */
+}
+
+#transactionsHistory li {
+  background-color: #ffffff;
+  border: 1px solid #dcdcdc;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: calc(33.333% - 20px); /* Trois cartes par ligne avec un écart de 20px entre elles */
+  box-sizing: border-box; /* Inclut les marges et padding dans la largeur totale */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#transactionsHistory li:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+#transactionsHistory li p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+#transactionsHistory li .timestamp {
+  font-size: 12px;
+  color: #888;
+}
+
+/* Responsive design : pour les petits écrans, afficher 1 carte par ligne */
+@media (max-width: 768px) {
+  #transactionsHistory li {
+    width: calc(50% - 20px); /* 2 cartes par ligne pour les écrans moyens */
+  }
+}
+
+/* Pour les écrans très petits, comme les téléphones mobiles */
+@media (max-width: 480px) {
+  #transactionsHistory li {
+    width: 100%; /* 1 carte par ligne pour les petits écrans */
+  }
+}
+
+#margin-top {
+  margin-top: 20px;
+}

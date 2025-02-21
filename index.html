@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gestion des locomotives et des wagons</title>
+  <script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.min.js"></script>
+  <script src="index.js"></script>
+  <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<body>
+  <div id="principalDiv">
+    <h1>Gestion des locomotives et des wagons</h1>
+    <p>Sur cette page, il est possible d'ajouter ou supprimer des locomotives et des wagons quand ils sont utilisés, mais aussi de définir ou obtenir le nombre de locomotives et de wagons disponibles.</p>
+    
+    <div id="container">
+      <div id="locomotiveSection">
+        <h2>Gestion des Locomotives</h2>
+        <label for="locomotive">Saisir le nombre de locomotives disponibles :</label>
+        <div id="displayFlex">
+          <input type="number" id="locomotiveInput" min="0" placeholder="Nombre de locomotives" aria-label="Nombre de locomotives disponibles" />
+          <button onclick="setLocomotive()" title="Mettre à jour le nombre de locomotives disponibles" aria-label="Mettre à jour le nombre de locomotives">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+              <path d="m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05"/>
+            </svg>
+          </button>
+        </div>
+        <div id="secondaryDiv">
+          <button onClick="addLocomotive()" title="Ajouter une locomotive" aria-label="Ajouter une locomotive">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+              <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+            </svg>
+          </button>
+          <button onClick="removeLocomotive()" title="Supprimer une locomotive" aria-label="Supprimer une locomotive">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+              <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div id="wagonSection">
+        <h2>Gestion des Wagons</h2>
+        <label for="wagon">Saisir le nombre de wagons disponibles :</label>
+        <div id="displayFlex">
+          <input type="number" id="wagonInput" min="0" placeholder="Nombre de wagons disponibles" aria-label="Nombre de wagons disponibles" />
+          <button onclick="setWagon()" title="Mettre à jour le nombre de wagons disponibles" aria-label="Mettre à jour le nombre de wagons">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+              <path d="m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05"/>
+            </svg>
+          </button>
+        </div>
+        <div id="displayFlex"">
+          <input type="number" id="wagonInputAdd" min="0" placeholder="Nombre de wagons à ajouter" aria-label="Nombre de wagons à ajouter" />
+          <button onClick="addWagon()" title="Ajouter un wagon" aria-label="Ajouter un wagon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+              <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+            </svg>
+          </button>
+        </div>
+        <div id="displayFlex">
+          <input type="number" id="wagonInputDelete" min="0" placeholder="Nombre de wagons à supprimer" aria-label="Nombre de wagons à supprimer" />
+          <button onClick="removeWagon()" title="Supprimer un wagon" aria-label="Supprimer un wagon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-circle" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+              <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <button id="margin-top" onClick="validate()" title="Valider les changements" aria-label="Valider les changements">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+        <path d="m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05"/>
+      </svg>
+    </button>
+    <h3>Historique des Transactions</h3>
+    <ul id="transactionsHistory"></ul>
+  </div>
+  <div id="loader" class="loader">
+    <div class="spinner"></div>
+  </div>
+</body>
+</html>
